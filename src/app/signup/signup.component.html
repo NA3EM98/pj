@@ -1,0 +1,112 @@
+<section id="sin" class="w-75 mx-auto my-4 p-4 bg-main-light">
+  <h1 class="h3 mt-5">Register Now</h1>
+  <div class="container mt-5">
+    <form [formGroup]="SINGUPFORM" (ngSubmit)="show(SINGUPFORM.value)">
+      <div>
+        <label>Name</label>
+        <input formControlName="name" class="form-control" type="text" />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            SINGUPFORM.get('name')?.errors && SINGUPFORM.get('name')?.touched
+          "
+        >
+          <p *ngIf="SINGUPFORM.get('name')?.getError('required')">
+            name is required
+          </p>
+          <p *ngIf="SINGUPFORM.get('name')?.getError('minlength')">
+            must be at least 3 chars
+          </p>
+          <p *ngIf="SINGUPFORM.get('name')?.getError('maxlength')">
+            must be at lower than 10 chars
+          </p>
+        </div>
+      </div>
+      <div>
+        <label>Email</label>
+        <input formControlName="email" class="form-control" type="email" />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            SINGUPFORM.get('email')?.errors && SINGUPFORM.get('email')?.touched
+          "
+        >
+          <p *ngIf="SINGUPFORM.get('email')?.getError('required')">
+            E-mail is required
+          </p>
+          <p *ngIf="SINGUPFORM.get('email')?.getError('email')">
+            email InValid Format
+          </p>
+        </div>
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          formControlName="password"
+          class="form-control"
+          type="password"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            SINGUPFORM.get('password')?.errors &&
+            SINGUPFORM.get('password')?.touched
+          "
+        >
+          <p *ngIf="SINGUPFORM.get('password')?.getError('required')">
+            password is required
+          </p>
+          <p *ngIf="SINGUPFORM.get('password')?.getError('pattern')">
+            password must start with upperCase then from 6 to 10
+          </p>
+        </div>
+      </div>
+      <div>
+        <label>rePassword</label>
+        <input
+          formControlName="rePassword"
+          class="form-control"
+          type="password"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            SINGUPFORM.get('rePassword')?.errors &&
+            SINGUPFORM.get('rePassword')?.touched
+          "
+        >
+          <p *ngIf="SINGUPFORM.get('rePassword')?.getError('required')">
+            repassword is required
+          </p>
+          <p *ngIf="SINGUPFORM.get('rePassword')?.getError('mismatch')">
+            password Must match
+          </p>
+        </div>
+      </div>
+      <div>
+        <label>phone</label>
+        <input formControlName="phone" class="form-control" type="tel" />
+        <div
+          *ngIf="
+            SINGUPFORM.get('phone')?.errors && SINGUPFORM.get('phone')?.touched
+          "
+          class="alert alert-danger"
+        >
+          <p *ngIf="SINGUPFORM.get('phone')?.getError('required')">
+            phone number is required
+          </p>
+          <p *ngIf="SINGUPFORM.get('phone')?.getError('pattern')">
+            accept only egypt phone numbers
+          </p>
+        </div>
+      </div>
+      <button
+        [disabled]="SINGUPFORM.invalid"
+        type="submit"
+        class="btn-main mt-2 ms-auto d-block"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<div class="row g-0">
+  <div class="col-md-8">
+    <owl-carousel-o [options]="mainslider">
+      <ng-template carouselSlide>
+        <img
+          src="../../assets/images/main-slider-1.jpeg"
+          class="w-100"
+          height="400"
+      /></ng-template>
+      <ng-template carouselSlide>
+        <img
+          src="../../assets/images/main-slider-2.jpeg"
+          class="w-100"
+          height="400"
+      /></ng-template>
+      <ng-template carouselSlide>
+        <img
+          src="../../assets/images/main-slider-3.jpeg"
+          class="w-100"
+          height="400"
+      /></ng-template>
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-4">
+    <img src="./assets/images/slide-1.jpeg" class="w-100" height="200" />
+    <img src="./assets/images/slide-2.jpeg" alt="" class="w-100" height="200" />
+  </div>
+</div>
+<section>
+  <h2 class="h4">Shop Popular Categories</h2>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let item of Categories">
+      <ng-template carouselSlide>
+        <div>
+          <img [src]="item.image" class="w-100" height="250" />
+          <h3 class="h5">{{ item.name }}</h3>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
+<input type="search" class="w-50 form-control m-auto" [(ngModel)]="search" />
+<div class="w-100">
+  <div class="row g-2">
+    <div
+      *ngFor="let prodect of Proudactlist | search : search"
+      class="col-md-2 mt-3 ju product"
+    >
+      <div [routerLink]="['/product', prodect._id]" class="">
+        <img [src]="prodect.imageCover" class="w-100" [alt]="prodect.title" />
+        <p class="ps-2 text-main">{{ prodect.category.name }}</p>
+        <p>
+          {{ prodect.title }}
+        </p>
+        <div
+          class="d-flex justify-content-between align-items-center mx-2 mb-5"
+        >
+          <p>{{ prodect.price }}EGP</p>
+          <p>
+            {{ prodect.ratingsAverage }}
+            <i class="fa-solid fa-star rating-color"></i>
+          </p>
+        </div>
+      </div>
+      <div class="text-center pb-5">
+        <div>
+          <i
+            *ngIf="!wishListItems.includes($any(prodect._id))"
+            (click)="addtowishlist(prodect._id)"
+            class="fa-solid fa-heart mt-4 text-center cursor-pointer"
+          ></i>
+          <i
+            *ngIf="wishListItems.includes($any(prodect._id))"
+            (click)="removeItem(prodect._id)"
+            class="fa-solid fa-heart mt-4 text-center text-danger cursor-pointer"
+          ></i>
+        </div>
+      </div>
+      <button (click)="addtocart(prodect._id)" class="btn iu btn-main w-100">
+        + Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

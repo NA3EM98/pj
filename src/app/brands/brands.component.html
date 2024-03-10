@@ -1,0 +1,75 @@
+<section class="container">
+  <h1 class="text-main text-center fw-bolder mt-3">All Brands</h1>
+  <div id="parent" class="row mt-3 g-3">
+    <div class="col-md-4 product" *ngFor="let item of brands">
+      <div
+        class="btn w-100 h-100"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        role="button"
+        (click)="ji(item._id)"
+      >
+        <img [src]="item.image" class="w-100" height="250" />
+        <h3 class="h5 text-center">{{ item.name }}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div *ngIf="ko" id="layer">
+  <div
+    class="d-flex flex-column justify-content-center align-items-center bg-white my-5 w-50 mx-auto"
+  >
+    <i class="fa-solid fa-xmark"></i>
+    <div
+      class="d-flex justify-content-center align-items-center bg-white w-50 m-auto"
+    >
+      <div class="ms-4">
+        <h3>{{ brandsg.name }}</h3>
+        <P>{{ brandsg.slug }}</P>
+      </div>
+      <div>
+        <img [src]="brandsg.image" alt="" />
+      </div>
+    </div>
+    <button class="btn bg-main-light">close</button>
+  </div> -->
+<!-- </div> -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="ms-4">
+            <h3 class="text-main">{{ brandsg.name }}</h3>
+            <P>{{ brandsg.slug }}</P>
+          </div>
+          <div>
+            <img [src]="brandsg.image" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
